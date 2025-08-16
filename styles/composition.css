@@ -1,0 +1,61 @@
+@import url(block/desktop.css);
+@import url(block/taskbar.css);
+@import url(block/window.css);
+@import url(block/button.css);
+@import url(block/icon.css);
+@import url(block/pages.css);
+@import url(block/typography.css);
+
+@import url('https://fonts.googleapis.com/css2?family=Google+Sans+Code:ital,wght@0,300..800;1,300..800&display=swap');
+
+:root {
+    --color-not-white: 247, 240, 250;
+    --color-not-black: 5, 3, 8;
+    --color-os: 149, 101, 254;
+
+    --color-font: var(--color-not-white);
+    --color-background: var(--color-not-black);
+
+
+}
+
+@media (prefers-color-scheme: light) {
+    :root {
+        --color-font: var(--color-not-black);
+        --color-background: var(--color-not-white);
+        --color-os: 116, 52, 254
+    }
+}
+
+
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+
+    color: rgb(var(--color-font));
+    font-family: "Google Sans Code", monospace;
+}
+
+
+body {
+    width: 100dvw;
+    min-width: 100dvw;
+    height: 100dvh;
+    min-height: 100dvh;
+    overflow: hidden;
+
+    background-color: rgb(var(--color-background));
+}
+
+
+
+
+
+
+[debug=true] * {
+    box-sizing: border-box;
+    background-color: rgba(255, 255, 255, 0.1);
+    border: inset red 1px;
+}

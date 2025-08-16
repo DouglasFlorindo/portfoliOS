@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="./resources/svg/icon.svg">
+    <link rel="stylesheet" href="./styles/toolbox/toolbox.css">
+    <link rel="stylesheet" href="./styles/composition.css">
+    <title>portfoliOS</title>
+
+    <script type="module">
+        import { windowTypeMetadataMap } from "./dist/window.js"
+
+        document.addEventListener("DOMContentLoaded", () => {
+
+            loadWindows(windowTypeMetadataMap)
+        }
+        );
+
+        async function loadWindows(windowsMap) {
+            const windowsContainer = document.querySelector("[element-role='windows-container']")
+
+
+            for (const [windowType, metadata] of windowTypeMetadataMap) {
+                const windowTitle = metadata.title
+
+                try {
+                    const windowContent = await getWindowContent(metadata.path)
+
+                    const windowEl = document.createElement("div");
+                    windowEl.innerHTML = `
+                        <div class="window-border window-opaque window-crt-effect">
+                            <header class="window-header flex-r">
+                                <h1>${metadata.title}</h1>
+                        </header>
+                        <div class="window-body">
+                            ${windowContent}
+                        </div>
+                    `;
+
+                    windowsContainer.appendChild(windowEl);
+
+                } catch (error) {
+                    windowsContainer.innerHTML += `<p class="text-size-l">Algo deu errado carregando a página ${metadata.title}</p>`
+                    console.error(`Failed to load window "${metadata.title}" content: ${error}`);
+                }
+
+
+
+            }
+        }
+
+        async function getWindowContent(filePath) {
+            const res = await fetch(filePath)
+            const content = await res.text()
+            return content
+        }
+    </script>
+</head>
+
+<body class="window-crt-effect">
+    <main class="desktop desktop-background expand-h" style="overflow: auto; padding: 2rem;">
+        <div class="container window-flow" element-role="windows-container"></div>
+    </main>
+</body>
+
+</html>

@@ -1,0 +1,25 @@
+.button-icon {
+    aspect-ratio: 1/1;
+    border: solid 0px transparent;
+    background-color: transparent;
+}
+
+.button-text {
+    min-width: 50px;
+    border: 2px solid rgb(var(--color-os));
+    box-shadow: rgba(var(--color-os), 0.5) 0 4px 0 0;
+    padding: 0.25rem 0.5rem;
+    background-color: rgb(var(--color-os));
+    color: rgb(var(--color-background));
+    font-weight: bold;
+
+    &:active {
+        box-shadow: none;
+        transform: translateY(4px);
+    }
+}
+
+.button:focus {
+    background-color: rgb(var(--color-font));
+    color: rgb(var(--color-background))
+}

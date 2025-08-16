@@ -1,0 +1,1 @@
+{"version":3,"file":"taskbarIcon.d.ts","sourceRoot":"","sources":["../src/taskbarIcon.ts"],"names":[],"mappings":"AAAA,OAAO,EAAyB,WAAW,EAAE,MAAM,aAAa,CAAA;AAIhE,qBAAa,WAAW;IAEpB,OAAO,CAAC,QAAQ,CAAe;IAC/B,OAAO,CAAC,gBAAgB,CAAc;IACtC,OAAO,CAAC,mBAAmB,CAAa;IAExC,IAAW,OAAO,IAAK,WAAW,CAEjC;gBAGW,aAAa,EAAE,WAAW,EAAE,UAAU,EAAE,WAAW;IAMzD,aAAa;IAmBnB,OAAO,CAAC,aAAa;CAQxB"}

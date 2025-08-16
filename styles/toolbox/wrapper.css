@@ -1,0 +1,85 @@
+.wrapper-s {
+    margin-inline: auto;
+    padding-inline: 1rem;
+    max-width: 40rem;
+}
+
+.wrapper {
+    margin-inline: auto;
+    padding-inline: 1rem;
+    max-width: 60rem;
+}
+
+.wrapper-x {
+    margin-inline: auto;
+    padding-inline: 1rem;
+    max-width: 80rem;
+}
+
+.wrapper-xl {
+    margin-inline: auto;
+    padding-inline: 1rem;
+    max-width: 100rem;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* ============== DEPRECATED ============== */
+
+
+.wrapper-small {
+    margin-inline: auto;
+    padding-inline: 1rem;
+    max-width: 40rem;
+}
+
+.wrapper {
+    margin-inline: auto;
+    padding-inline: 1rem;
+    max-width: 60rem;
+}
+
+.wrapper-big {
+    margin-inline: auto;
+    padding-inline: 1rem;
+    max-width: 80rem;
+}
+
+.wrapper-bigger {
+    margin-inline: auto;
+    padding-inline: 1rem;
+    max-width: 100rem;
+}
+
+
+
+

@@ -1,0 +1,36 @@
+<div class="container">
+    <div class="wrapper flow-v">
+        <h2 class="text-center">Me mande uma mensagem!</h2>
+        <br>
+        <form id="form-contact" name="contact" method="POST" data-netlify="true" netlify-honeypot="human-field" class="flow-v" style="--gap-space: var(--space-s)">
+            <div class="flex-r space-between">
+                <label class="contact-input flex-grow flex-c align-start" for="input-name"><span>Seu nome: <abbr
+                            title="obrigatório">*</abbr></span>
+                    <input class="expand-w" type="text" required="true" name="name" id="input-name"
+                        placeholder="Digite o seu nome" />
+                </label>
+
+                <span></span><span></span>
+
+                <label class="contact-input flex-grow flex-c align-start" for="input-email"><span>Seu email: <abbr
+                            title="obrigatório">*</abbr></span>
+                    <input class="expand-w" type="email" required="true" name="email" id="input-email"
+                        placeholder="Digite o seu email" />
+                </label>
+            </div>
+            
+            <label class="contact-input flex-c align-start" for="input-message"><span>Mensagem: <abbr
+                        title="obrigatório">*</abbr></span>
+                <textarea form="form-contact" class="expand-w" required="true" name="message" id="input-message"
+                    placeholder="Digite a sua mensagem"></textarea>
+            </label>
+
+            <button class="button button-text" type="submit">Enviar!</button>
+
+            <label class="display-none">Preencha esse campo se você é 100% humano hahahaha não é uma armadilha
+                eu juro
+                hahahahaha<input type="checkbox" name="human-field"></label>
+        </form>
+        <p class="text-center">ou me mande um email: <br>douglasflorindodeassis@gmail.com</p>
+    </div>
+</div>

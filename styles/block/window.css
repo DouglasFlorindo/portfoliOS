@@ -1,0 +1,87 @@
+.window {
+    width: 700px;
+    min-width: 65ch;
+    max-width: 65rem;
+
+    height: 60dvh;
+    min-height: 100px;
+    max-height: 90dvh;
+
+    position: absolute;
+
+    overflow: hidden;    
+    resize: both;
+
+    z-index: 4;
+
+    box-shadow: rgba(var(--color-os), 0.25) 0 4px 0 0;
+}
+
+.window-border {
+    border: solid 2px rgb(var(--color-os));
+}
+
+.window-opaque {
+    background-color: rgb(var(--color-background));
+}
+
+.window-crt-effect {
+    background-image: repeating-linear-gradient(
+        rgba(0, 0, 0, 0.005),
+        rgba(0, 0, 0, 0.005) 4px,
+        rgba(255, 255, 255, 0.005) 4px,
+        rgba(255, 255, 255, 0.005) 8px);
+    background-size: 100% 200%;
+    animation: bg-scroll 2s linear infinite;
+}
+
+.window-header {
+    height: 40px;
+    border-bottom: solid 2px rgb(var(--color-os));
+    padding-left: 1rem;
+}
+
+.window-header > * + * {
+    border-left: solid 2px rgb(var(--color-os));
+}
+
+.window-flow > * + * {
+    margin-top: 2rem;
+}
+
+.window-body {
+    height: calc(100% - 40px);
+    overflow-x: hidden;
+    overflow-y: auto;
+    padding: 2rem;
+
+}
+
+.window-corner {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    width: 1.5rem;
+    height: 1.5rem;    
+    fill: rgb(var(--color-os));
+}
+
+
+@keyframes bg-scroll {
+    0% {
+        background-position-y: 0px;
+    }
+    100% {
+        background-position-y: -7.9px;
+    }
+}
+
+@keyframes window-open {
+    0% {
+        transform: scaleY(0);
+    }
+
+    0% {
+        transform: scaleY(1);
+    }
+}

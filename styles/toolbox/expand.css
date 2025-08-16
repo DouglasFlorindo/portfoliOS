@@ -1,0 +1,88 @@
+.expand {
+    width: var(--expand-width);
+    min-width: var(--expand-width);
+    height: var(--expand-height);
+    min-height: var(--expand-height);
+    box-sizing: border-box;
+}
+
+.expand-w {
+    width: var(--expand-width);
+    min-width: var(--expand-width);
+    box-sizing: border-box;
+}
+
+.expand-h {
+    height: var(--expand-height);
+    min-height: var(--expand-height);
+    box-sizing: border-box;
+}
+
+.expand-viewport {
+  width: var(--viewport-width);
+  height: var(--viewport-height);
+  box-sizing: border-box;
+}
+
+.expand-viewport-w {
+  width: var(--viewport-width);
+  box-sizing: border-box;
+}
+
+.expand-viewport-h {
+  height: var(--viewport-height);
+  box-sizing: border-box;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* ============== DEPRECATED ============== */
+
+.horizontal-expand {
+    width: 100%;
+}
+
+.vertical-expand {
+    height: 100%;
+}
+
+.horizontal-expand-viewport {
+    width: 100dvw;
+}
+
+.vertical-expand-viewport {
+    min-height: 100dvh;
+}

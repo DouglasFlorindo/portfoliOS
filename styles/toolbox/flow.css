@@ -1,0 +1,10 @@
+.flow-v > * + * { margin-top: var(--flow-space); }
+.flow-h > * + * { margin-left: var(--flow-space); }
+
+@media (max-width: 750px) {
+    .flow-v:not([responsive="false"]) > * + * { margin-top: calc(var(--flow-space) / 2); }
+    .flow-h:not([responsive="false"]) > * + * { margin-left: calc(var(--flow-space) / 2); }
+}
+
+
+

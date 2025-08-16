@@ -1,0 +1,31 @@
+.desktop {
+    padding: 1rem;
+    overflow: hidden;
+}
+
+ .desktop-icon-list {
+    list-style-type: none;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, 5rem);
+    gap: 1em;
+    align-items: start;
+}
+
+.desktop-background {
+    background-image:
+        linear-gradient(rgba(var(--color-os), 0.2) 1px, transparent 1px),
+        linear-gradient(to right, rgb(var(--color-os), 0.2) 1px,
+            transparent 1px);
+    background-size: 100px 100px;
+    background-position: 10px;
+}
+
+.desktop-icon, .desktop-icon * {
+    width: 100%;
+    max-width: 5rem;
+    word-break: break-word;
+}
+
+
+
+

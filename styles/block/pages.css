@@ -1,0 +1,70 @@
+.profile-figure {
+    max-width: 50%;
+}
+
+.profile-image {
+    object-fit: cover;
+    height: 100%;
+    max-width: 200px;
+}
+
+.profile-icons {
+    gap: 1rem;
+    list-style: none;
+
+    & .icon {
+        height: 3rem;
+        max-height: 3rem;
+        aspect-ratio: 1;
+    }
+}
+
+.profile-text-grid {
+
+    & li {
+        min-height: 2rem;
+    }
+}
+
+.curriculum-summary {
+    list-style: none
+}
+
+.curriculum-summary::after {
+    content: url(/resources/svg/add.svg);
+}
+
+details[open] .curriculum-summary::after {
+    content: url(/resources/svg/remove.svg);
+}
+
+.curriculum-separator>* {
+    border-top: 1px solid rgb(var(--color-os));
+    padding-top: 0.5rem;
+}
+
+
+.contact-input {
+
+    & input,
+    & textarea {
+        background-color: rgb(var(--color-background));
+        
+        border: solid 1px rgb(var(--color-os));
+        box-shadow: inset rgba(var(--color-os), 0.25) 0 4px 0 0;
+        padding: 0.5rem;
+        
+
+    }
+
+    & textarea {
+        resize: vertical;
+    }
+
+    & input::placeholder,
+    & textarea::placeholder {
+        font-size: 0.75rem;
+        color: rgba(var(--color-font), 0.5);
+
+    }
+}

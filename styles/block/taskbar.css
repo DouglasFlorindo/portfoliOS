@@ -1,0 +1,18 @@
+.taskbar {
+    height: 50px;
+    z-index: 10;
+}
+
+.taskbar>*+* {
+    border-left: solid 2px rgb(var(--color-os));
+}
+
+.taskbar-icon {
+
+    & svg {
+        fill: rgb(var(--color-os));
+        height: 100%;
+        width: 100%;
+        padding: 5px;
+    }
+}

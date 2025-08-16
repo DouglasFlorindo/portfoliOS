@@ -1,0 +1,29 @@
+:root {
+    --expand-width: 100%;
+    --expand-height: 100%;
+
+    --viewport-width: 100dvw;
+    --viewport-height: 100dvh;
+
+    --space-s: 0.5rem;
+    --space-m: 1rem;
+    --space-l: 1.5rem;
+    --space-xl: 2rem;
+
+    --flow-space: var(--space-m);
+    --gap-space: var(--space-m);
+
+
+    /* How to use: rgba(var(--color), 1) */
+    --color-white: 255, 255, 255;
+    --color-black: 0, 0, 0;
+
+
+    --text-block-width: 65ch;
+
+    --font-size-base: 1rem;
+    --font-size-s: calc(var(--font-size-base) * 0.5);
+    --font-size-m: calc(var(--font-size-base) * 1);
+    --font-size-l: calc(var(--font-size-base) * 2);
+    --font-size-xl: calc(var(--font-size-base) * 3);
+}
