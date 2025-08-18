@@ -1,5 +1,7 @@
 import type { WindowTypes } from './window.js';
 import WindowElement from './window.js';
+import { isMobile, removeItemOnce } from './utils.js'
+
 
 export default class WindowsManager {
     private static isDragging = false;
@@ -7,7 +9,7 @@ export default class WindowsManager {
     private static offsetX = 0;
     private static offsetY = 0;
 
-
+    private static windows: WindowElement[] = []
     private static get windowsOnScreen() {
         return document.querySelectorAll<HTMLElement>("[element-role='window']");
     }
@@ -25,24 +27,45 @@ export default class WindowsManager {
     }
 
 
-
-    async newWindow(windowType: WindowTypes) {
+    static async newWindow(windowType: WindowTypes) {
 
         const windowEl = new WindowElement();
         await windowEl.createElement(windowType);
+        WindowsManager.windows.push(windowEl)
         const el = windowEl.element;
         const taskbarEl = windowEl.taskbarIcon
 
-        this.configWindow(el!)
+        WindowsManager.configWindow(el!)
         WindowsManager.desktopEl.appendChild(el!)
-        this.addTaskbarIcon(taskbarEl!)
+        if (taskbarEl) this.addTaskbarIcon(taskbarEl)
         WindowsManager.focusOnWindow(el!)
-        WindowsManager.bringWindowToCenter(el!)
 
+        if (isMobile())
+            WindowsManager.fullScreenWindow(el!)
+        else
+            WindowsManager.bringWindowToCenter(el!)
     }
 
 
-    private configWindow(el: HTMLElement) {
+    static async newPopUp(popUpInnerHTML: string, popUpTitle: string) {
+
+        const popupEl = new WindowElement();
+        await popupEl.createPopUp(popUpInnerHTML, popUpTitle);
+        WindowsManager.windows.push(popupEl)
+        const el = popupEl.element;
+
+        WindowsManager.configWindow(el!)
+        WindowsManager.desktopEl.appendChild(el!)
+        WindowsManager.focusOnWindow(el!)
+
+        if (isMobile())
+            WindowsManager.fullScreenWindow(el!)
+        else
+            WindowsManager.bringWindowToCenter(el!)
+    }
+
+
+    static configWindow(el: HTMLElement) {
         el.addEventListener("mousedown", () => WindowsManager.focusOnWindow(el))
 
         const header: HTMLElement | null = el.querySelector("[element-role='window-header']");
@@ -55,8 +78,17 @@ export default class WindowsManager {
     static removeWindow(window: WindowElement) {
         if (!window.element) return
 
-        WindowsManager.removeTaskbarIcon(window.taskbarIcon!)
+        removeItemOnce(WindowsManager.windows, window)
+
+        if (window.taskbarIcon) WindowsManager.removeTaskbarIcon(window.taskbarIcon)
         window.element.remove()
+    }
+
+
+    static removeAllWindows() {
+        WindowsManager.windows.forEach(element => {
+            WindowsManager.removeWindow(element)
+        });
     }
 
 
@@ -83,7 +115,18 @@ export default class WindowsManager {
     }
 
 
+    static fullScreenWindow(windowElement: HTMLElement) {
+
+        windowElement.style.left = `0`;
+        windowElement.style.top = `0`;
+        windowElement.style.width = `100%`;
+        windowElement.style.height = `100%`;
+    }
+
+
     private static startDraggingWindow(windowTarget: HTMLElement, e: MouseEvent) {
+        if (isMobile()) return
+
         WindowsManager.isDragging = true
         WindowsManager.dragTarget = windowTarget
 
@@ -121,7 +164,7 @@ export default class WindowsManager {
     // ================ TASKBAR ================
 
 
-    private addTaskbarIcon(taskbarIcon: HTMLElement) {
+    static addTaskbarIcon(taskbarIcon: HTMLElement) {
         WindowsManager.taskbarEl.appendChild(taskbarIcon)
     }
 

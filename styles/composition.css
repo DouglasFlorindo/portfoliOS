@@ -5,6 +5,8 @@
 @import url(block/icon.css);
 @import url(block/pages.css);
 @import url(block/typography.css);
+@import url(block/anchor.css);
+@import url(block/navbar.css);
 
 @import url('https://fonts.googleapis.com/css2?family=Google+Sans+Code:ital,wght@0,300..800;1,300..800&display=swap');
 
@@ -49,8 +51,10 @@ body {
     background-color: rgb(var(--color-background));
 }
 
-
-
+hr {
+    border: solid rgb(var(--color-os)) 1px;
+    border-width: 1px 0 0 0;
+}
 
 
 

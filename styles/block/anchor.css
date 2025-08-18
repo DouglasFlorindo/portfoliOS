@@ -1,0 +1,17 @@
+.anchor:focus {
+    background-color: rgb(var(--color-font));
+    color: rgb(var(--color-background));
+
+    & * {
+        background-color: rgb(var(--color-font));
+        color: rgb(var(--color-background));
+    }
+}
+
+.anchor-icon {
+
+    & .icon {
+        height: 50px;
+    }
+
+}

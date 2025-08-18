@@ -18,8 +18,11 @@ export default class WindowElement {
     get taskbarIcon(): HTMLElement | null;
     createElement(windowType: WindowTypes): Promise<void>;
     private createTaskbarElement;
-    private configElement;
+    private configWindowElement;
     private loadWindowContent;
+    createPopUp(popUpInnerHTML: string, popUpTitle: string): Promise<void>;
+    private loadPopUpContent;
+    private configPopUpElement;
 }
 export {};
 //# sourceMappingURL=window.d.ts.map

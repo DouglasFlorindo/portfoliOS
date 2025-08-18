@@ -1,20 +1,16 @@
 .expand {
     width: var(--expand-width);
-    min-width: var(--expand-width);
     height: var(--expand-height);
-    min-height: var(--expand-height);
     box-sizing: border-box;
 }
 
 .expand-w {
     width: var(--expand-width);
-    min-width: var(--expand-width);
     box-sizing: border-box;
 }
 
 .expand-h {
     height: var(--expand-height);
-    min-height: var(--expand-height);
     box-sizing: border-box;
 }
 

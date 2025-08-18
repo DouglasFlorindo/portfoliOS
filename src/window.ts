@@ -21,13 +21,13 @@ export const windowTypeMetadataMap = new Map<WindowTypes, WindowMetadata>([
         title: "Portfólio",
         path: "/pages/portfolio.html",
         iconFile: "work.svg",
-         script: null,
+        script: "portfolio.js",
     }],
     [WindowTypes.CURRICULUM, {
         title: "Currículo",
         path: "/pages/curriculum.html",
         iconFile: "doc.svg",
-         script: null,
+        script: null,
     }],
     [WindowTypes.CONTACT, {
         title: "Contato",
@@ -50,21 +50,21 @@ export default class WindowElement {
 
 
     public get taskbarIcon(): HTMLElement | null {
-        return this._taskbarIcon.element || null;
+        return this._taskbarIcon?.element || null;
     }
 
 
     async createElement(windowType: WindowTypes) {
         this._element = document.createElement('section');
-        
+
         await this.createTaskbarElement(windowType)
 
         const res = await fetch("/pages/window.html");
         this._element.innerHTML = await res.text();
 
-        
+
         await this.loadWindowContent(windowType);
-        await this.configElement(windowType);
+        this.configWindowElement(windowType);
 
     }
 
@@ -75,18 +75,30 @@ export default class WindowElement {
     }
 
 
-    private async configElement(windowType: WindowTypes) {
+    private configWindowElement(windowType: WindowTypes) {
         this._element.setAttribute("element-role", "window");
         this._element.setAttribute("tabindex", "0");
         this._element.setAttribute("role", "dialog");
         this._element.setAttribute("window-type", windowType.toString());
         this._element.classList = "window";
 
+        // Carrega o título da janela:
         const windowTitle = this._element.querySelector("[element-role='window-title']");
-        if (windowTitle) windowTitle.textContent = windowTypeMetadataMap.get(windowType)?.title.toString() ?? ""
+        if (windowTitle) windowTitle.textContent = windowTypeMetadataMap.get(windowType)?.title.toString() || ""
 
+        // Adiciona o evento ao botão de fechar:
         const closeButton = this._element.querySelector("[element-role='close-button']");
         closeButton?.addEventListener("click", () => WindowsManager.removeWindow(this))
+
+        // Caso exista, importa o script e o executa:
+        const script = windowTypeMetadataMap.get(windowType)?.script
+        if (script) {
+            import(`/pages/scripts/${script}`).then(module => {
+                if (typeof module.init === "function") {
+                    module.init(this._element)
+                }
+            });
+        }
     }
 
 
@@ -101,6 +113,39 @@ export default class WindowElement {
         const content = await res.text();
 
         windowBody.innerHTML = content;
+    }
+
+
+    async createPopUp(popUpInnerHTML: string, popUpTitle: string) {
+        this._element = document.createElement('section');
+
+        const res = await fetch("/pages/window.html");
+        this._element.innerHTML = await res.text();
+
+        this.loadPopUpContent(popUpInnerHTML);
+        this.configPopUpElement(popUpTitle)
+    }
+
+
+    private loadPopUpContent(content: string) {
+        const windowBody = this._element.querySelector("[element-role='window-body']");
+        if (!windowBody) throw new Error("'window-body' element not found.");
+
+        windowBody.innerHTML = content;
+    }
+
+
+    private configPopUpElement(popUpTitle: string) {
+        this._element.setAttribute("element-role", "popup");
+        this._element.setAttribute("tabindex", "0");
+        this._element.setAttribute("role", "dialog");
+        this._element.classList = "window popup";
+
+        const windowTitle = this._element.querySelector("[element-role='window-title']");
+        if (windowTitle) windowTitle.textContent = popUpTitle
+
+        const closeButton = this._element.querySelector("[element-role='close-button']");
+        closeButton?.addEventListener("click", () => WindowsManager.removeWindow(this))
     }
 }
 

@@ -10,7 +10,7 @@
     --space-l: 1.5rem;
     --space-xl: 2rem;
 
-    --flow-space: var(--space-m);
+    --flow-space: var(--space-l);
     --gap-space: var(--space-m);
 
 

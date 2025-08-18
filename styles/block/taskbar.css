@@ -16,3 +16,10 @@
         padding: 5px;
     }
 }
+
+@media (max-width: 750px) {
+    .taskbar {
+        display: none;
+    }
+    
+}

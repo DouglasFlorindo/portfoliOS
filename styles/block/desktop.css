@@ -1,9 +1,26 @@
 .desktop {
     padding: 1rem;
     overflow: hidden;
+    height: calc(100% - 50px);
+    justify-content: flex-start;
 }
 
- .desktop-icon-list {
+.desktop-simplified {
+    height: 100%;
+}
+
+@media (max-width: 750px) {
+    .desktop {
+        justify-content: flex-end;
+    }
+    
+    .desktop-simplified {
+        padding-left: 0 !important;
+        padding-right: 0 !important;
+    }
+}
+
+.desktop-icon-list {
     list-style-type: none;
     display: grid;
     grid-template-columns: repeat(auto-fill, 5rem);
@@ -20,12 +37,10 @@
     background-position: 10px;
 }
 
-.desktop-icon, .desktop-icon * {
+.desktop-icon,
+.desktop-icon * {
     width: 100%;
     max-width: 5rem;
     word-break: break-word;
+    font-size: 0.75rem;
 }
-
-
-
-

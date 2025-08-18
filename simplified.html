@@ -10,11 +10,11 @@
     <title>portfoliOS</title>
 
     <script type="module">
-        import { windowTypeMetadataMap } from "./dist/window.js"
+        import { windowTypeMetadataMap, WindowTypes } from "./dist/window.js"
 
-        document.addEventListener("DOMContentLoaded", () => {
+        document.addEventListener("DOMContentLoaded", async () => {
 
-            loadWindows(windowTypeMetadataMap)
+            await loadWindows(windowTypeMetadataMap)
         }
         );
 
@@ -28,7 +28,8 @@
                 try {
                     const windowContent = await getWindowContent(metadata.path)
 
-                    const windowEl = document.createElement("div");
+                    const windowEl = document.createElement("section");
+                    windowEl.classList = "window-simplified"
                     windowEl.innerHTML = `
                         <div class="window-border window-opaque window-crt-effect">
                             <header class="window-header flex-r">
@@ -41,12 +42,14 @@
 
                     windowsContainer.appendChild(windowEl);
 
+                    if (windowType == WindowTypes.PORTFOLIO) {
+                        initPortfolio(windowEl)
+                    }
+
                 } catch (error) {
                     windowsContainer.innerHTML += `<p class="text-size-l">Algo deu errado carregando a página ${metadata.title}</p>`
                     console.error(`Failed to load window "${metadata.title}" content: ${error}`);
                 }
-
-
 
             }
         }
@@ -56,11 +59,29 @@
             const content = await res.text()
             return content
         }
+
+        function initPortfolio(portfolioWindow) {
+            const popUpImages = portfolioWindow.querySelectorAll("[element-role='popup-image']")
+
+            popUpImages.forEach(element => {
+                element.addEventListener("click", () => {
+                    const title = element.getAttribute("image-title") || ""
+                    const imgEl = element.querySelector(`img[title="${title}"]`)
+                    if (!imgEl) return;
+
+                    const src = imgEl.getAttribute("src")
+                    if (!src) return;
+
+                    window.open(src, "_blank")
+                })
+            })
+        }
+
     </script>
 </head>
 
 <body class="window-crt-effect">
-    <main class="desktop desktop-background expand-h" style="overflow: auto; padding: 2rem;">
+    <main class="desktop desktop-simplified desktop-background expand-h" style="overflow: auto; padding: 2rem;">
         <div class="container window-flow" element-role="windows-container"></div>
     </main>
 </body>
