@@ -1,5 +1,5 @@
 import WindowElement from './window.js';
-import { isMobile, removeItemOnce } from './utils.js';
+import { isMobile, removeItemOnce } from './helpers/utils.js';
 export default class WindowsManager {
     static isDragging = false;
     static dragTarget = null;

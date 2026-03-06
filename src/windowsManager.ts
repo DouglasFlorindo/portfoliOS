@@ -1,6 +1,6 @@
 import type { WindowTypes } from './window.js';
 import WindowElement from './window.js';
-import { isMobile, removeItemOnce } from './utils.js'
+import { isMobile, removeItemOnce } from './helpers/utils.js'
 
 
 export default class WindowsManager {
